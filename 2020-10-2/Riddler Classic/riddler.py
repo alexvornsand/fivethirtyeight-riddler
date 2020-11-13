@@ -1,4 +1,5 @@
 # https://fivethirtyeight.com/features/can-you-eat-all-the-chocolates/
+
 import random
 
 # define a function that eats the bag of chocolates a single time and return the last
