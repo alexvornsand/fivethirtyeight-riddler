@@ -2,7 +2,17 @@
 
 from math import comb
 
-for N in reversed(range(102)): # N is the number of remaining flips
-    for n in range(N): # n is the number of flips won so far
-        if 51 - n <= N
-        for m in range(N-n) # m is the number flips left to win to exceed 51
+def calculateProbabilityOfWinning(w,N):
+    # N is the number of throws remaining
+    # w is the number of wins so far
+    if(N < 51 - w): # check if possible to win
+        return NaN
+    elif(w >= 51):
+        return 1.00
+    else:
+        pOfOutcome = []
+        for r in range(51 - w, N + 1):
+            pOfOutcome.append(comb(N, r) / (2 ** N))
+        return sum(pOfOutcome)
+
+calculateProbabilityOfWinning(45, 25)
