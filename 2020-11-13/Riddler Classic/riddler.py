@@ -73,6 +73,44 @@ def estExpHuntWinnings():
 
 estExpHuntWinnings()
 
+def calcExpStratWinnings(): # not right
+    values = [200] * 6 + [400] * 6 + [600] * 6 + [800] * 6 + [1000] * 6
+    dailyDoubleDist = [2, 0, 3, 1, 2, 0, 286, 131, 202, 173, 214, 124, 703, 352, 581, 557, 533, 358, 866, 508, 795, 719, 763, 518, 602, 281, 497, 530, 448, 355]
+    playOrder = list(np.argsort(np.array(dailyDoubleDist)))
+    winnings = []
+    for i in range(30):
+        winningsSoFar = sum([values[x] for x in playOrder[:i]])
+        if winningsSoFar <= 1000:
+            dailyDoubleWinnings = 1000
+        else:
+            dailyDoubleWinnings = winningsSoFar
+        winnings.append((winningsSoFar + dailyDoubleWinnings + sum([values[x] for x in playOrder[i:]])) * dailyDoubleDist[i] / sum(dailyDoubleDist))
+    return sum(winnings)
+
+calcExpStratWinnings()
+
+def estExpStratWinnings():
+    results = []
+    for j in range(10000000):
+        values = [200] * 6 + [400] * 6 + [600] * 6 + [800] * 6 + [1000] * 6
+        dailyDoubleDist = [2, 0, 3, 1, 2, 0, 286, 131, 202, 173, 214, 124, 703, 352, 581, 557, 533, 358, 866, 508, 795, 719, 763, 518, 602, 281, 497, 530, 448, 355]
+        dd = random.choices(list(range(30)), weights = dailyDoubleDist, k = 1)
+        playOrder = list(np.argsort(np.array(dailyDoubleDist)))
+        winnings = []
+        for i in playOrder:
+            winningsSoFar = sum(winnings)
+            if i == dd:
+                if winningsSoFar <= 1000:
+                    winnings.append(1000)
+                else:
+                    winnings.append(winningsSoFar)
+            else:
+                winnings.append(values[i])
+        results.append(sum(winnings))
+    return sum(results) / len(results)
+
+estExpStratWinnings()
+
 ## classic
 from math import comb
 import numpy as np
