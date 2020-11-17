@@ -18,3 +18,5 @@ shootFreethrowsRepeatedly <- function(){
   results <- unlist(pbreplicate(10000000, shootFreethrows()))
   return(mean(results))
 }
+
+shootFreethrowsRepeatedly()
