@@ -1,3 +1,5 @@
+# https://fivethirtyeight.com/features/how-long-will-your-smartphone-distract-you-from-family-dinner/
+
 import random
 
 def waitForDinner():
