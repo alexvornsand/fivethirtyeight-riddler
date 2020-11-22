@@ -11,7 +11,7 @@ findF13sInNextCalYears <- function(year){
 
 findMostF13sInCalYears <- function(year){
   yearWithMostF13 <- c(2020,0)
-  for(y in (year-29):year){
+  for(y in (year-200):year){
     f13s <- findF13sInNextCalYears(y)
     if(f13s >= yearWithMostF13[2]){
       yearWithMostF13[1] <- y
@@ -32,7 +32,7 @@ findF13sInNextYears <- function(date){
 
 findMostF13sInYears <- function(day){
   endDate <- ymd(day)
-  startDate <- endDate - years(29)
+  startDate <- endDate - years(20)
   currentDate <- startDate
   dateWithMostF13s <- currentDate
   mostF13s <- 0
