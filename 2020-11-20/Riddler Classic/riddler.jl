@@ -1,7 +1,5 @@
 # https://fivethirtyeight.com/features/can-you-pass-the-cranberry-sauce/
 
-using Pkg
-Pkg.add("StatsBase")
 using StatsBase
 
 function findLastToSauce(k)
