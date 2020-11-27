@@ -18,11 +18,8 @@ findLastToSauce <- function(k){
 }
 
 findLastToSauceRepeatedly <- function(n, k){
-  x <- replicate(n, findLastToSauce(k))
-  return(table(x) / n)
+  return(replicate(n, findLastToSauce(k)))
 }
-
-findLastToSauceRepeatedly(100000, 20)
 
 buildGifData <- function(k){
   k <- 20
@@ -109,6 +106,79 @@ animate(
 
 anim_save(
   'riddler.gif',
+  width = 4,
+  units = 'in',
+  dpi = 'retina'
+)
+
+winners <- findLastToSauceRepeatedly(100,20)
+
+gifData <- data.frame(
+  period = integer(),
+  seat = integer(),
+  count = integer()
+)
+period <- 0
+for(i in 1:(length(winners))){
+  period <- period + 1
+  thisTurn <- data.frame(
+    period = rep(period, 20),
+    seat = 0:19,
+    count = 0
+  )
+  countsToDate <- table(winners[1:i])
+  for(j in as.integer(names(countsToDate))){
+    thisTurn$count[j + 1] <- countsToDate[as.character(j)] / max(as.vector(countsToDate))
+  }
+  gifData <- rbind(gifData, thisTurn)
+}
+
+gifData$x <- cos(gifData$seat * 2 * pi / 20)
+gifData$y <- sin(gifData$seat * 2 * pi / 20)
+
+g <- ggplot(
+  gifData,
+  aes(
+    x,
+    y
+  )
+) +
+  geom_point(
+    aes(
+      alpha = count,
+      group = seq_along(period)
+    ),
+    pch = 21,
+    size = 10,
+    color = '#1a1a1a',
+    fill = '#007acc'
+  ) +
+  theme_bw() +
+  theme(
+    panel.border = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.line = element_blank(),
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    legend.position = 'none'
+  ) +
+  transition_manual(period)
+
+animate(
+  plot = g,
+  nframes = length(unique(gifData$period)),
+  fps = 4,
+  start_pause = 4,
+  end_pause = 4
+)
+
+anim_save(
+  'riddler2.gif',
   width = 4,
   units = 'in',
   dpi = 'retina'
