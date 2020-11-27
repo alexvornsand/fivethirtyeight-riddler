@@ -99,9 +99,8 @@ g <- ggplot(
 animate(
   plot = g,
   nframes = length(unique(gifData$turn)),
-  fps = 4,
-  start_pause = 4,
-  end_pause = 4
+  duration = 10,
+  end_pause = 10
 )
 
 anim_save(
@@ -111,7 +110,7 @@ anim_save(
   dpi = 'retina'
 )
 
-winners <- findLastToSauceRepeatedly(100,20)
+winners <- findLastToSauceRepeatedly(1000,20)
 
 gifData <- data.frame(
   period = integer(),
@@ -119,14 +118,14 @@ gifData <- data.frame(
   count = integer()
 )
 period <- 0
-for(i in 1:(length(winners))){
+for(i in 1:(length(winners) / 10)){
   period <- period + 1
   thisTurn <- data.frame(
     period = rep(period, 20),
     seat = 0:19,
     count = 0
   )
-  countsToDate <- table(winners[1:i])
+  countsToDate <- table(winners[1:(10 * i)])
   for(j in as.integer(names(countsToDate))){
     thisTurn$count[j + 1] <- countsToDate[as.character(j)] / max(as.vector(countsToDate))
   }
@@ -171,10 +170,7 @@ g <- ggplot(
 
 animate(
   plot = g,
-  nframes = length(unique(gifData$period)),
-  fps = 4,
-  start_pause = 4,
-  end_pause = 4
+  duration = 10,
 )
 
 anim_save(
@@ -183,3 +179,4 @@ anim_save(
   units = 'in',
   dpi = 'retina'
 )
+
