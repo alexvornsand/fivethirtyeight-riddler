@@ -63,7 +63,7 @@ ggplot() +
 
 ggsave(
   'riddler.png',
-  width = 8,
+  width = 4,
   units = 'in',
   dpi = 'retina'
 )
