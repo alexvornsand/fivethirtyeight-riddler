@@ -61,9 +61,10 @@ ggplot() +
     y = 'Probability of Winning'
   )
 
-ggsave(
-  'riddler.png',
-  width = 4,
-  units = 'in',
-  dpi = 'retina'
-)
+  ggsave(
+    'riddler.png',
+    width = 8,
+    height = 5,
+    units = 'in',
+    dpi = 'retina'
+  )
