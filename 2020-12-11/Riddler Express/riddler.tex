@@ -1,0 +1,463 @@
+\documentclass[varwidth, border=20pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{multicol}
+
+\definecolor{vblack}{HTML}{1A1A1A}
+\definecolor{vgray}{HTML}{686868}
+\definecolor{vblue}{HTML}{007acc}
+
+\def\one{
+	\draw[draw = vblue, fill = vblue] (-.6,.1) circle (.05);
+	\draw [draw = none, fill = vblue] (-.65,.1) -- (-.6,.25) -- (-.55,.1) -- cycle;	
+}
+
+\def\two{
+	\draw[draw = vblue, fill = vblue] (-.4,.1) circle (.05);
+	\draw [draw = none, fill = vblue] (-.45,.1) -- (-.4,.25) -- (-.35,.1) -- cycle;
+}
+\def\three{
+	\draw[draw = vblue, fill = vblue] (-.2,.1) circle (.05);
+	\draw [draw = none, fill = vblue] (-.25,.1) -- (-.2,.25) -- (-.15,.1) -- cycle;
+}
+\def\four{
+	\draw[draw = vblue, fill = vblue] (0,.1) circle (.05);
+	\draw [draw = none, fill = vblue] (-.05,.1) -- (0,.25) -- (.05,.1) -- cycle;
+}
+\def\five{
+	\draw[draw = vblue, fill = vblue] (.4,.1) circle (.05);
+	\draw [draw = none, fill = vblue] (.35,.1) -- (.4,.25) -- (.45,.1) -- cycle;
+}
+\def\six{
+	\draw[draw = vblue, fill = vblue] (.6,.1) circle (.05);
+	\draw [draw = none, fill = vblue] (.55,.1) -- (.6,.25) -- (.65,.1) -- cycle;
+}
+\def\seven{
+	\draw[draw = vblue, fill = vblue] (.8,.1) circle (.05);
+	\draw [draw = none, fill = vblue] (.75,.1) -- (.8,.25) -- (.85,.1) -- cycle;
+}
+\def\eight{
+	\draw[draw = vblue, fill = vblue] (1,.1) circle (.05);
+	\draw [draw = none, fill = vblue] (.95,.1) -- (1,.25) -- (1.05,.1) -- cycle;
+}
+\def\menorah#1{
+	\draw[draw = vblack] (0,0) arc(180:360:.2);
+	\draw[draw = vblack] (-.2,0) arc(180:360:.4);
+	\draw[draw = vblack] (-.4,0) arc(180:360:.6);
+	\draw[draw = vblack] (-.6,0) arc(180:360:.8);
+	\draw[draw = vblack] (.2,-1) -- (.2,.2);
+	\draw[draw = vblue, fill = vblue] (.2,.3) circle (.05);
+	\draw[draw = none, fill = vblue] (.15,.3) -- (.2,.45) -- (.25, .3) -- cycle;
+	\draw (-1,-.25) node{\ $#1$};
+	\draw (1.5,.25) node{};
+	\draw (-1.5,.25) node{};
+}
+
+\begin{document}
+	\begin{multicols}{4}	
+		\begin{tikzpicture}
+			\menorah{0}
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{1}
+			\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{2}
+			\one\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{3}
+			\two
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{4}
+			\one\two
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{5}
+			\one\two\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{6}
+			\two\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{7}
+			\two\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{8}
+			\one\two\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{9}
+			\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{10}
+			\one\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{11}
+			\one\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{12}
+			\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{13}
+			\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{14}
+			\one\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{15}
+			\two\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{16}
+			\two\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{17}
+			\one\two\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{18}
+			\three\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{19}
+			\three\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{20}
+			\one\three\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{21}
+			\two\three\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{22}
+			\one\two\three\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{23}
+			\one\two\three\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{24}
+			\two\three\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{25}
+			\two\three\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{26}
+			\one\two\three\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{27}
+			\four
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{28}
+			\four\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{29}
+			\one\four\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{30}
+			\four\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{31}
+			\four\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{32}
+			\one\four\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{33}
+			\two\four\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{34}
+			\two\four\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{35}
+			\one\two\four\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{36}
+			\four\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{37}
+			\four\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{38}
+			\one\four\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{39}
+			\four\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{40}
+			\one\four\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{41}
+			\one\four\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{42}
+			\two\four\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{43}
+			\two\four\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{44}
+			\one\two\four\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{45}
+			\three\four\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{46}
+			\three\four\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{47}
+			\one\three\four\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{48}
+			\three\four\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{49}
+			\one\three\four\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{50}
+			\one\three\four\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{51}
+			\two\three\four\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{52}
+			\two\three\four\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{53}
+			\one\two\three\four\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{54}
+			\four\five
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{55}
+			\four\five\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{56}
+			\one\four\five\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{57}
+			\four\five\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{58}
+			\four\five\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{59}
+			\one\four\five\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{60}
+			\two\four\five\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{61}
+			\two\four\five\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{62}
+			\one\two\four\five\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{63}
+			\four\five\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{64}
+			\four\five\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{65}
+			\one\four\five\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{66}
+			\four\five\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{67}
+			\one\four\five\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{68}
+			\one\four\five\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{69}
+			\two\four\five\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{70}
+			\two\four\five\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{71}
+			\one\two\four\five\six\seven\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{72}
+			\three\four\five\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{73}
+			\one\three\four\five\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{74}
+			\one\three\four\five\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{75}
+			\two\three\four\five\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{76}
+			\one\two\three\four\five\six
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{77}
+			\one\two\three\four\five\six\eight
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{78}
+			\two\three\four\five\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{79}
+			\one\two\three\four\five\six\seven
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\menorah{80}
+			\one\two\three\four\five\six\seven\eight
+		\end{tikzpicture}
+	\end{multicols}
+\end{document}
