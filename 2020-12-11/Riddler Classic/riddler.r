@@ -22,24 +22,12 @@ chooseHat <- function(pos, state){
     } else { # if there's only one color
       if('r' %in% state[1:3]){ # and it's red
         return('b') # choose blue
-      } else { # othwerise
+      } else if('b' %in% state[1:3]){ # and it's blue
+        return('g') # choose green
+      } else { # and it's green
         return('r') # choose red
       }
     }
-  }
-}
-
-chooseHat <- function(pos, seat){
-  if(pos == 1){
-    return((seat[4] + 1) %% 3)
-  } else if(pos == 2){
-    return((seat[4] + seat[5]) %% 3)
-  } else if(pos == 3){
-    return((seat[5] - 1) %% 3)
-  } else if(pos == 4){
-    return((seat[1] + seat[2]) %% 3)
-  } else {
-    return((seat[2] + seat[3]) %% 3)
   }
 }
 
