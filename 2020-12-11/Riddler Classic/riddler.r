@@ -2,7 +2,6 @@
 
 library(arrangements)
 
-arrangements <- permutations(x = c(1, 2, 3), k = 5, replace = T)
 arrangements <- permutations(x = c('r', 'b', 'g'), k = 5, replace = T)
 
 chooseHat <- function(pos, state){
@@ -18,7 +17,7 @@ chooseHat <- function(pos, state){
     if(length(unique(state[1:3])) == 3){ # if there are three different colors you can see
       return('r') # return red (highest priority)
     } else if(length(unique(state[1:3])) == 2){ # if there are two different colors you see
-      return(setdiff(unique(state[1:3]), c('r', 'b', 'g'))) # return the one you don't see
+      return(setdiff(c('r', 'b', 'g'), unique(state[1:3]))) # return the one you don't see
     } else { # if there's only one color
       if('r' %in% state[1:3]){ # and it's red
         return('b') # choose blue
@@ -37,11 +36,12 @@ allGuess <- function(state){
     guesses <- c(guesses, chooseHat(i, state))
   }
   if(any(guesses == state)){
-    return('Win')
+    result = 'Win'
   } else {
-    return('Lose')
+    result = 'Lose'
   }
+  return(c(state, guesses, result, as.character(sum(guesses == state)), as.character(guesses == state)))
 }
 
-x <- unlist(apply(arrangements, 1, allGuess))
-arrangements[x == 'Lose',]
+x <- matrix(unlist(apply(arrangements, 1, allGuess)), ncol = 17, byrow = T)
+View(x[x[,12] != '1',])
