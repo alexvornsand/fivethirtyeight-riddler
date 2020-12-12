@@ -2,7 +2,8 @@
 
 library(arrangements)
 
-arrangements <- permutations(x = c("r", "g", "b"), k = 5, replace = T)
+arrangements <- permutations(x = c(1, 2, 3), k = 5, replace = T)
+arrangements <- permutations(x = c('r', 'b', 'g'), k = 5, replace = T)
 
 chooseHat <- function(pos, state){
   if(pos %in% 1:3){ # if in the group of three
@@ -25,6 +26,20 @@ chooseHat <- function(pos, state){
         return('r') # choose red
       }
     }
+  }
+}
+
+chooseHat <- function(pos, seat){
+  if(pos == 1){
+    return((seat[4] + 1) %% 3)
+  } else if(pos == 2){
+    return((seat[4] + seat[5]) %% 3)
+  } else if(pos == 3){
+    return((seat[5] - 1) %% 3)
+  } else if(pos == 4){
+    return((seat[1] + seat[2]) %% 3)
+  } else {
+    return((seat[2] + seat[3]) %% 3)
   }
 }
 
