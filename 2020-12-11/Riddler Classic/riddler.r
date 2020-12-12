@@ -20,11 +20,11 @@ chooseHat <- function(pos, state){
       return(setdiff(c('r', 'b', 'g'), unique(state[1:3]))) # return the one you don't see
     } else { # if there's only one color
       if('r' %in% state[1:3]){ # and it's red
-        return('b') # choose blue
-      } else if('b' %in% state[1:3]){ # and it's blue
         return('g') # choose green
-      } else { # and it's green
+      } else if('b' %in% state[1:3]){ # and it's blue
         return('r') # choose red
+      } else { # and it's green
+        return('b') # choose blue
       }
     }
   }
@@ -44,4 +44,5 @@ allGuess <- function(state){
 }
 
 x <- matrix(unlist(apply(arrangements, 1, allGuess)), ncol = 17, byrow = T)
+x[x[,11] == 'Lose', c(1:5,11)]
 View(x[x[,12] != '1',])
