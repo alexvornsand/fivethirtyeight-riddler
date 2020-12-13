@@ -2,9 +2,12 @@
 
 library(arrangements)
 
-arrangements <- permutations(x = c('r', 'b', 'g'), k = 5, replace = T)
+arrangements <- permutations(x = c('r', 'b', 'g'), k = 5, replace = T) # matrix of values
 
 chooseHat <- function(pos, state){
+  # function that defines the behavior of an individual within the context of a 
+  # vector of five individuals
+  
   if(pos %in% 1:3){ # if in the group of three
     if('r' %in% state[4:5]){ # if you can see red
       return('r') # choose red
@@ -33,6 +36,7 @@ chooseHat <- function(pos, state){
 allGuess <- function(state){
   guesses <- c()
   for(i in 1:5){
+    # for each individual within the state, act according to defined function
     guesses <- c(guesses, chooseHat(i, state))
   }
   if(any(guesses == state)){
@@ -43,6 +47,6 @@ allGuess <- function(state){
   return(c(state, guesses, result, as.character(sum(guesses == state)), as.character(guesses == state)))
 }
 
-x <- matrix(unlist(apply(arrangements, 1, allGuess)), ncol = 17, byrow = T)
+x <- matrix(unlist(apply(arrangements, 1, allGuess)), ncol = 17, byrow = T) # apply the group behavior to each row of matrix
 x[x[,11] == 'Lose', c(1:5,11)]
 View(x[x[,12] != '1',])
