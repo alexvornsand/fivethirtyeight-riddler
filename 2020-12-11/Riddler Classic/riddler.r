@@ -2,33 +2,43 @@
 
 library(arrangements)
 
-arrangements <- permutations(x = c('r', 'b', 'g'), k = 5, replace = T) # matrix of values
+colors <- c('r', 'b', 'g', 'r')
+arrangements <- permutations(x = colors[1:3], k = 5, replace = T) # matrix of values
 
 chooseHat <- function(pos, state){
-  # function that defines the behavior of an individual within the context of a 
-  # vector of five individuals
-  
-  if(pos %in% 1:3){ # if in the group of three
-    if('r' %in% state[4:5]){ # if you can see red
-      return('r') # choose red
-    } else if('b' %in% state[4:5]){ # if you can see blue
-      return('b') # choose blue
-    } else { # otherwise
-      return('g') # choose green
+  if(pos == 1){
+    if(length(unique(state[4:5])) == 2){
+      return(colors[min(which(colors %in% state[4:5]))])
+    } else {
+      return(state[4])
     }
-  } else { # if in the group of two
-    if(length(unique(state[1:3])) == 3){ # if there are three different colors you can see
-      return('r') # return red (highest priority)
-    } else if(length(unique(state[1:3])) == 2){ # if there are two different colors you see
-      return(setdiff(c('r', 'b', 'g'), unique(state[1:3]))) # return the one you don't see
-    } else { # if there's only one color
-      if('r' %in% state[1:3]){ # and it's red
-        return('g') # choose green
-      } else if('b' %in% state[1:3]){ # and it's blue
-        return('r') # choose red
-      } else { # and it's green
-        return('b') # choose blue
-      }
+  } else if(pos == 2){
+    if(length(unique(state[4:5])) == 2){
+      return(colors[min(which(colors %in% state[4:5]))])
+    } else {
+      return(state[4])
+    }
+  } else if(pos == 3){
+    if(length(unique(state[4:5])) == 2){
+      return(colors[min(which(colors %in% state[4:5]))])
+    } else {
+      return(state[4])
+    }
+  } else if(pos == 4){
+    if(length(unique(state[1:3])) == 3){
+      return('r')
+    } else if(length(unique(state[1:3])) == 2){
+      return(setdiff(c('r', 'b', 'g'), unique(state[1:3])))
+    } else {
+      return(colors[min(which(!(colors %in% state[1:3])))])
+    }
+  } else {
+    if(length(unique(state[1:3])) == 3){
+      return('r')
+    } else if(length(unique(state[1:3])) == 2){
+      return(setdiff(c('r', 'b', 'g'), unique(state[1:3])))
+    } else {
+      return(colors[min(which(!(colors %in% state[1:3])))])
     }
   }
 }
@@ -48,5 +58,7 @@ allGuess <- function(state){
 }
 
 x <- matrix(unlist(apply(arrangements, 1, allGuess)), ncol = 17, byrow = T) # apply the group behavior to each row of matrix
-x[x[,11] == 'Lose', c(1:5,11)]
+
+View(x[x[,11] == 'Lose', c(1:5,11)])
+
 View(x[x[,12] != '1',])
