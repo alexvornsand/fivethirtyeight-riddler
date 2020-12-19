@@ -79,7 +79,7 @@ buildGifData <- function(n){
   return(diskData)
 }
 
-test <- buildGifData(1000)
+test <- buildGifData(100)
 
 g <- ggplot(
   data = test,
@@ -113,4 +113,11 @@ g <- ggplot(
 animate(
   plot = g,
   nframes = length(unique(test$period))
+)
+
+anim_save(
+  'riddler.gif',
+  width = 4,
+  units = 'in',
+  dpi = 'retina'
 )
