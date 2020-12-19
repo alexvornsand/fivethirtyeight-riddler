@@ -26,29 +26,29 @@ buildGifData <- function(n){
     x = numeric(),
     y = numeric(),
     radius = numeric(),
-    state = factor()
-    # 0 = old, inside circle
-    # 1 = old, inside donut
-    # 2 = new, inside circle
-    # 3 = new, inside donut
-    # 4 = new, large ring
-    # 5 = new, largest ring
+    state = factor(),
+    label = character()
   )
   oldDisks <- data.frame(
     period = integer(),
     x = numeric(),
     y = numeric(),
     radius = numeric(),
-    state = factor()
+    state = factor(),
+    label = character()
   )
   time <- 0
+  num <- 0
+  denom <- 0
   while(time < n){
     x = runif(1, min = -2, max = 2)
     y = runif(1, min = -2, max = 2)
     if(x ^ 2 + y ^ 2 <= 4){
+      denom <- denom + 1
       if(x ^ 2 + y ^ 2 >= 3){
         newState <- 3
         newRadius <- .1
+        num <- num + 1
       } else {
         newState <- 2
         newRadius <- .1
@@ -58,20 +58,23 @@ buildGifData <- function(n){
         x = 0,
         y = 0,
         state = 5,
-        radius = 2
+        radius = 2,
+        label = NA
       )
       newDisks <- data.frame(
         period = rep(time, 2),
         x = rep(x, 2),
         y = rep(y, 2),
         state = c(newState, 4),
-        radius = c(newRadius, 1)
+        radius = c(newRadius, 1),
+        label = c(paste(num, '/', denom, sep = ''), NA)
       )
       allNewDisks <- rbind(bigDisk, oldDisks, newDisks)
       allNewDisks$period = rep(time, length(allNewDisks$period))
       diskData <- rbind(diskData, allNewDisks)
       newDisks$state[which(newDisks$state == 2)] <- 0
       newDisks$state[which(newDisks$state == 3)] <- 1
+      newDisks$label <- NA
       oldDisks <- rbind(oldDisks, newDisks[1,])
       time <- time + 1
     }
@@ -112,12 +115,14 @@ g <- ggplot(
 
 animate(
   plot = g,
-  nframes = length(unique(test$period))
+  nframes = length(unique(test$period)),
+  end_pause = 25
 )
 
 anim_save(
   'riddler.gif',
   width = 4,
+  height = 4,
   units = 'in',
   dpi = 'retina'
 )
