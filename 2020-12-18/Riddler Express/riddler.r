@@ -79,13 +79,14 @@ buildGifData <- function(n){
       time <- time + 1
     }
   }
+  print(num)
   return(diskData)
 }
 
-test <- buildGifData(100)
+results <- buildGifData(100)
 
 g <- ggplot(
-  data = test,
+  data = results,
   aes(
     x0 = x,
     y0 = y,
@@ -95,8 +96,16 @@ g <- ggplot(
   )
 ) + 
   geom_circle() + 
+  geom_text(
+    x = 4,
+    y = 0,
+    aes(label = label),
+    color = '#1a1a1a'
+  ) +
   scale_fill_manual(values = c('0' = '#686868', '1' = '#007acc', '2' = '#1a1a1a', '3' = '#007acc', '4' = NA, '5' = NA)) +
   scale_color_manual(values = c('0' = '#686868', '1' = '#007acc', '2' = '#1a1a1a', '3' = '#1a1a1a', '4' = '#1a1a1a', '5' = '#1a1a1a')) +
+  xlim(-3,5) + 
+  ylim(-3,3) +
   theme_bw() +
   theme(
     panel.border = element_blank(),
@@ -115,14 +124,14 @@ g <- ggplot(
 
 animate(
   plot = g,
-  nframes = length(unique(test$period)),
-  end_pause = 25
+  nframes = length(unique(results$period)),
+  end_pause = 25,
+  width = 4,
+  height = 3,
+  units = 'in',
+  res = 200
 )
 
 anim_save(
-  'riddler.gif',
-  width = 4,
-  height = 4,
-  units = 'in',
-  dpi = 'retina'
+  'riddler.gif'
 )
