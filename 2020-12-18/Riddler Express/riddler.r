@@ -83,7 +83,7 @@ buildGifData <- function(n){
   return(diskData)
 }
 
-results <- buildGifData(100)
+results <- buildGifData(200)
 
 g <- ggplot(
   data = results,
