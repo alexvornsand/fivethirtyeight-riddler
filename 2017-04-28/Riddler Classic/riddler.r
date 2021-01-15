@@ -2,6 +2,7 @@
 
 library(markovchain)
 library(ggplot2)
+library(showtext)
 
 tMatrix <- matrix(
   c(
@@ -44,6 +45,10 @@ for(i in 3:100){
     manyBallGames <- rbind(manyBallGames, data.frame(n = i, turns = playColorGame(i)))
   }
 }
+
+font_add_google(name = 'Montserrat', family = 'Montserrat')
+font_add_google(name = 'Merriweather', family = 'Merriweather')
+showtext_auto()
   
 ggplot(data = manyBallGames) + 
   geom_point(
@@ -68,9 +73,11 @@ ggplot(data = manyBallGames) +
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     axis.line = element_line(colour = '#1a1a1a'),
-    plot.title = element_text(colour = '#1a1a1a'),
-    axis.title.x = element_text(colour = '#1a1a1a'),
-    axis.title.y = element_text(colour = '#1a1a1a'),
+    axis.text.x = element_text(colour = '#1a1a1a', family = 'Merriweather'),
+    axis.text.y = element_text(colour = '#1a1a1a', family = 'Merriweather'),
+    plot.title = element_text(colour = '#1a1a1a', family = 'Montserrat', face = 'bold'),
+    axis.title.x = element_text(colour = '#1a1a1a', family = 'Merriweather'),
+    axis.title.y = element_text(colour = '#1a1a1a', family = 'Merriweather')
   ) +
   labs(
     title = 'Turns to Homogeneity',
