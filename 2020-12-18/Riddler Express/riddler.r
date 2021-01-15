@@ -3,6 +3,7 @@
 library(ggplot2)
 library(gganimate)
 library(ggforce)
+library(showtext)
 
 placeDisk <- function(){
   x <- runif(1, min = -2, max = 2)
@@ -85,6 +86,10 @@ buildGifData <- function(n){
 
 results <- buildGifData(200)
 
+font_add_google(name = 'Montserrat', family = 'Montserrat:wght@700')
+font_add_google(name = 'Merriweather', family = 'Merriweather')
+showtext_auto()
+
 g <- ggplot(
   data = results,
   aes(
@@ -100,7 +105,8 @@ g <- ggplot(
     x = 4,
     y = 0,
     aes(label = label),
-    color = '#1a1a1a'
+    color = '#1a1a1a',
+    family = 'Merriweather'
   ) +
   scale_fill_manual(values = c('0' = '#686868', '1' = '#007acc', '2' = '#1a1a1a', '3' = '#007acc', '4' = NA, '5' = NA)) +
   scale_color_manual(values = c('0' = '#686868', '1' = '#007acc', '2' = '#1a1a1a', '3' = '#1a1a1a', '4' = '#1a1a1a', '5' = '#1a1a1a')) +
