@@ -2,6 +2,7 @@
 
 library(pbapply)
 library(ggplot2)
+library(showtext)
 
 gameOfAttrition <- function(n, m){
   turn <- 1
@@ -57,7 +58,11 @@ buildGraphData <- function(n){
   return(graphData)
 }
 
-graphData <- buildGraphData(75)
+graphData <- buildGraphData(25)
+
+font_add_google(name = 'Montserrat', family = 'Montserrat')
+font_add_google(name = 'Merriweather', family = 'Merriweather')
+showtext_auto()
 
 ggplot(data = graphData) + 
   geom_point(
@@ -84,11 +89,15 @@ ggplot(data = graphData) +
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     axis.line = element_line(colour = '#1a1a1a'),
-    plot.title = element_text(colour = '#1a1a1a'),
-    axis.title.x = element_text(colour = '#1a1a1a'),
-    axis.title.y = element_text(colour = '#1a1a1a'),
+    axis.text.x = element_text(colour = '#1a1a1a', family = 'Merriweather'),
+    axis.text.y = element_text(colour = '#1a1a1a', family = 'Merriweather'),
+    plot.title = element_text(colour = '#1a1a1a', family = 'Montserrat', face = 'bold'),
+    axis.title.x = element_text(colour = '#1a1a1a', family = 'Merriweather'),
+    axis.title.y = element_text(colour = '#1a1a1a', family = 'Merriweather'),
     legend.position = 'none'
   ) +
+  xlim(0, 25) +
+  ylim(0, 50) +
   labs(
     title = 'Game of Attrition',
     x = "Player A's Power Points",
