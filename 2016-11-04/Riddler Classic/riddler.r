@@ -1,6 +1,7 @@
 # https://fivethirtyeight.com/features/a-puzzle-will-you-yes-you-decide-the-election/
 
 library(ggplot2)
+library(showtext)
 
 probOfPivotalVote <- function(n){
   x <- 2 * n
@@ -27,6 +28,10 @@ estAvgProbOfPV <- c()
 for(i in 1:length(estProbsOfPV)){
   estAvgProbOfPV <- c(estAvgProbOfPV, mean(estProbsOfPV[[i]]))
 }
+
+font_add_google(name = 'Montserrat', family = 'Montserrat')
+font_add_google(name = 'Merriweather', family = 'Merriweather')
+showtext_auto()
 
 ggplot() +
   geom_point(
@@ -58,9 +63,11 @@ ggplot() +
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     axis.line = element_line(colour = '#1a1a1a'),
-    plot.title = element_text(colour = "#1a1a1a"),
-    axis.title.x = element_text(colour = "#1a1a1a"),
-    axis.title.y = element_text(colour = "#1a1a1a"),
+    axis.text.x = element_text(colour = '#1a1a1a', family = 'Merriweather'),
+    axis.text.y = element_text(colour = '#1a1a1a', family = 'Merriweather'),
+    plot.title = element_text(colour = '#1a1a1a', family = 'Montserrat', face = 'bold'),
+    axis.title.x = element_text(colour = '#1a1a1a', family = 'Merriweather'),
+    axis.title.y = element_text(colour = '#1a1a1a', family = 'Merriweather'),
   ) +
   labs(
     title = 'Probability of Casting the Deciding Vote by Number of Other Voters',
